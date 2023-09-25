@@ -1,0 +1,24 @@
+.failure-bg-container {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  height: 100vh;
+}
+.retryBtn {
+  color: white;
+  font-family: 'Roboto';
+  background-color: #4656a1;
+  border-radius: 7px;
+  padding: 10px;
+}
+.not-found {
+  width: 30%;
+}
+.text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

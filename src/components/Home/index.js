@@ -2,6 +2,7 @@ import {Component} from 'react'
 import {Link} from 'react-router-dom'
 import Loader from 'react-loader-spinner'
 import Header from '../Header'
+import CourseItem from '../CourseItem'
 
 import './index.css'
 
@@ -31,14 +32,11 @@ class Home extends Component {
     })
     const apiUrl = 'https://apis.ccbp.in/te/courses'
     const response = await fetch(apiUrl)
-    const data = await response.json()
-
-    console.log(' data', data)
-
-    const newData = data.courses.map(each => this.getFormattedData(each))
-    console.log('new data=', newData)
 
     if (response.ok === true) {
+      const data = await response.json()
+      const newData = data.courses.map(each => this.getFormattedData(each))
+
       this.setState({
         coursesList: newData,
         apiStatus: apiStatusConstants.success,
@@ -101,14 +99,8 @@ class Home extends Component {
         <Header />
         <h1 className="heading">Courses</h1>
         <ul className="courses-container">
-          <br />
           {coursesList.map(each => (
-            <Link to={`/courses/${each.id}`} className="nav-item">
-              <li key={each.id} className="list-item">
-                <img src={each.logoUrl} alt={each.name} className="logo" />
-                <p>{each.name}</p>
-              </li>
-            </Link>
+            <CourseItem course={each} key={each.id} />
           ))}
         </ul>
       </>
